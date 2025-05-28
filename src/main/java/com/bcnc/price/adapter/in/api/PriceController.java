@@ -27,8 +27,8 @@ public class PriceController {
     @ResponseStatus(HttpStatus.OK)
     public PriceRsDTO getPrice(
             @Schema(example = "2020-06-14T10:00:00.0Z") @RequestParam Instant applicationDate,
-            @Schema(example = "18c5948a-b52c-425f-a854-e0b6efee84f5") @RequestParam UUID productId,
-            @Schema(example = "9d02c1b7-56a9-4049-bc87-518d49a0eb78") @RequestParam UUID brandId) {
+            @Schema(example = "18c5948a-b52c-425f-a854-e0b6efee84f5", description = "uuid for product with code 35455") @RequestParam UUID productId,
+            @Schema(example = "9d02c1b7-56a9-4049-bc87-518d49a0eb78", description = "uuid for brand ZARA") @RequestParam UUID brandId) {
         val price = getPriceUseCase.getPrice(applicationDate, productId, brandId);
         return mapper.toResponse(price);
     }
