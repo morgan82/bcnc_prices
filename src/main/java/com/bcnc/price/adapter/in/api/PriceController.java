@@ -30,6 +30,6 @@ public class PriceController {
             @Schema(example = "18c5948a-b52c-425f-a854-e0b6efee84f5", description = "uuid for product with code 35455") @RequestParam UUID productId,
             @Schema(example = "9d02c1b7-56a9-4049-bc87-518d49a0eb78", description = "uuid for brand ZARA") @RequestParam UUID brandId) {
         val price = getPriceUseCase.getPrice(applicationDate, productId, brandId);
-        return mapper.toResponse(price);
+        return mapper.toResponse(price, applicationDate);
     }
 }
