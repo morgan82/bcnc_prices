@@ -6,9 +6,13 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 
+import java.time.Instant;
+
 @Mapper(unmappedTargetPolicy = ReportingPolicy.ERROR, componentModel = "spring")
 public interface PriceHttpMapper {
-    @Mapping(target = "productCode", source = "product.code")
-    @Mapping(target = "productName", source = "product.name")
-    PriceRsDTO toResponse(Price price);
+    @Mapping(target = "productId", source = "price.product.id")
+    @Mapping(target = "priceId", source = "price.id")
+    @Mapping(target = "brandId", source = "price.brand.id")
+    @Mapping(target = "applicationDate", source = "applicationDate")
+    PriceRsDTO toResponse(Price price, Instant applicationDate);
 }

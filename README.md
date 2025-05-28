@@ -50,10 +50,11 @@ The application follows **Hexagonal Architecture (Ports and Adapters)** with the
 ### Response
 ```json
 {
-  "currency": "EUR",
-  "amount": 35.50,
-  "productName": "Camiseta Básica Blanca Hombre",
-  "productCode": "35455"
+  "product_id": "18c5948a-b52c-425f-a854-e0b6efee84f5",
+  "brand_id": "9d02c1b7-56a9-4049-bc87-518d49a0eb78",
+  "price_id": "45a2b473-8ab4-45e7-a310-017bc1de7a76",
+  "amount": 38.95,
+  "application_date": "2020-09-14T10:00:00Z"
 }
 ```
 

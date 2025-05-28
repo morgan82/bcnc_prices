@@ -59,6 +59,10 @@ public class PriceControllerIT {
         val priceRsDTO = response.getBody();
         assertThat(priceRsDTO).isNotNull();
         assertThat(priceRsDTO.amount()).isEqualTo(new BigDecimal(expectedAmount));
+        assertThat(priceRsDTO.priceId()).isNotNull();
+        assertThat(priceRsDTO.productId()).isEqualTo(productId.toString());
+        assertThat(priceRsDTO.brandId()).isEqualTo(brandId.toString());
+        assertThat(priceRsDTO.applicationDate()).isEqualTo(applicationDate);
 
     }
 
