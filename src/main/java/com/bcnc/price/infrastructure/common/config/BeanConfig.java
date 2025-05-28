@@ -1,5 +1,9 @@
 package com.bcnc.price.infrastructure.common.config;
 
+import com.bcnc.price.adapter.out.pricerepository.PriceEntityRepository;
+import com.bcnc.price.adapter.out.pricerepository.SqlPriceRepository;
+import com.bcnc.price.adapter.out.pricerepository.mapper.PriceSqlMapper;
+import com.bcnc.price.application.port.out.PriceRepository;
 import com.bcnc.price.domain.service.PriceService;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.StreamReadFeature;
@@ -33,7 +37,12 @@ public class BeanConfig {
     }
 
     @Bean
-    public PriceService priceService() {
-        return new PriceService();
+    public PriceRepository priceRepository(PriceEntityRepository repository, PriceSqlMapper mapper) {
+        return new SqlPriceRepository(repository, mapper);
+    }
+
+    @Bean
+    public PriceService priceService(PriceRepository repository) {
+        return new PriceService(repository);
     }
 }

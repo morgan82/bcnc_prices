@@ -6,12 +6,13 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.UUID;
 
 @AllArgsConstructor
 @Getter
 @Setter
 public class Price {
-    private Long id;
+    private UUID id;
     private Brand brand;
     private Product product;
     private Instant startDate;
