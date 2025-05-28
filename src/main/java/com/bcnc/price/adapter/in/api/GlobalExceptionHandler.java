@@ -1,6 +1,6 @@
 package com.bcnc.price.adapter.in.api;
 
-import jakarta.persistence.EntityNotFoundException;
+import com.bcnc.price.domain.exception.PriceNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
@@ -18,8 +18,8 @@ import java.net.URI;
 @Slf4j
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler({EntityNotFoundException.class})
-    public ResponseEntity<ProblemDetail> handleNotFound(EntityNotFoundException ex, HttpServletRequest request) {
+    @ExceptionHandler({PriceNotFoundException.class})
+    public ResponseEntity<ProblemDetail> handleNotFound(PriceNotFoundException ex, HttpServletRequest request) {
         val detail = ProblemDetail.forStatus(HttpStatus.NOT_FOUND);
         detail.setTitle("Resource not found");
         detail.setType(URI.create(getFullURL(request)));
