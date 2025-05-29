@@ -6,8 +6,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Index;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,7 +17,7 @@ import java.time.Instant;
 import java.util.UUID;
 
 @Table(name = "prices",
-        indexes = @Index(columnList = "start_date, end_date, brand_id, product_id, priority DESC"))
+        indexes = @Index(columnList = "product_uuid, brand_uuid, start_date, end_date, priority DESC"))
 @Entity
 @Getter
 @Setter
@@ -30,12 +28,10 @@ public class PriceEntity extends AuditableEntity {
     @JdbcTypeCode(SqlTypes.VARCHAR)
     @Column(nullable = false, unique = true, length = 36)
     private UUID uuid;
-    @OneToOne(optional = false)
-    @JoinColumn(name = "brand_id", nullable = false)
-    private BrandEntity brand;
-    @OneToOne(optional = false)
-    @JoinColumn(name = "product_id", nullable = false)
-    private ProductEntity product;
+    @JdbcTypeCode(SqlTypes.VARCHAR)
+    private UUID brandUuid;
+    @JdbcTypeCode(SqlTypes.VARCHAR)
+    private UUID productUuid;
     @Column(name = "start_date", nullable = false)
     private Instant startDate;
     @Column(name = "end_date", nullable = false)
