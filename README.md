@@ -91,7 +91,7 @@ Code coverage is measured using **JaCoCo**.
 
   📄 `target/site/jacoco/index.html`
 
-Minimum instruction coverage is enforced via `jacoco:check` with a threshold of **60%**.
+Minimum instruction coverage is enforced via `jacoco:check` with a threshold of **90%**.
 
 ## Seed Data
 
