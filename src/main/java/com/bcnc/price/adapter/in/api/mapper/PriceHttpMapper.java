@@ -10,9 +10,9 @@ import java.time.Instant;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.ERROR, componentModel = "spring")
 public interface PriceHttpMapper {
-    @Mapping(target = "productId", source = "price.product.id")
+    @Mapping(target = "productId", source = "price.productId")
     @Mapping(target = "priceId", source = "price.id")
-    @Mapping(target = "brandId", source = "price.brand.id")
+    @Mapping(target = "brandId", source = "price.brandId")
     @Mapping(target = "applicationDate", source = "applicationDate")
     PriceRsDTO toResponse(Price price, Instant applicationDate);
 }

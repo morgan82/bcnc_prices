@@ -13,8 +13,8 @@ import java.util.UUID;
 @Setter
 public class Price {
     private UUID id;
-    private Brand brand;
-    private Product product;
+    private UUID brandId;
+    private UUID productId;
     private Instant startDate;
     private Instant endDate;
     private BigDecimal amount;

@@ -2,6 +2,7 @@ package com.bcnc.price.it;
 
 import com.bcnc.price.adapter.in.api.model.PriceRsDTO;
 import lombok.val;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -64,6 +65,23 @@ public class PriceControllerIT {
         assertThat(priceRsDTO.brandId()).isEqualTo(brandId.toString());
         assertThat(priceRsDTO.applicationDate()).isEqualTo(applicationDate);
 
+    }
+
+    @Test
+    void shouldReturnPriceForInvalidRequests() {
+
+        // Given:
+        val applicationDate = Instant.parse("1900-06-14T10:00:00.00Z");
+        val productId = UUID.fromString("18c5948a-b52c-425f-a854-e0b6efee84f5");
+        val brandId = UUID.fromString("9d02c1b7-56a9-4049-bc87-518d49a0eb78");
+        val url = String.format("http://localhost:%d/v1/prices?applicationDate=%s&productId=%s&brandId=%s",
+                port, applicationDate, productId, brandId);
+
+        // When
+        val response = restTemplate.exchange(URI.create(url), HttpMethod.GET, null, PriceRsDTO.class);
+
+        // Then
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
     }
 
 }
