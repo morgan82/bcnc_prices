@@ -17,7 +17,7 @@ import java.time.Instant;
 import java.util.UUID;
 
 @Table(name = "prices",
-        indexes = @Index(columnList = "start_date, end_date, brand_uuid, product_uuid, priority DESC"))
+        indexes = @Index(columnList = "product_uuid, brand_uuid, start_date, end_date, priority DESC"))
 @Entity
 @Getter
 @Setter

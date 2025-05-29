@@ -15,4 +15,4 @@ CREATE TABLE prices
 );
 
 CREATE INDEX idx_prices_optimized
-    ON prices (start_date, end_date, brand_uuid, product_uuid, priority DESC);
+    ON prices (product_uuid, brand_uuid, start_date, end_date, priority DESC);

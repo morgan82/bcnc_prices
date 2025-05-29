@@ -36,6 +36,21 @@ The application follows **Hexagonal Architecture (Ports and Adapters)** with the
 - OpenAPI documentation enabled via Swagger UI.
 - Code coverage analysis with **JaCoCo**.
 
+## Seed Data
+
+At startup, the database is initialized with 4 predefined price records for the product code `35455` and brand `ZARA`. These are defined in `data.sql` and `schema.sql`.
+
+## Performance Considerations
+
+To improve query performance when searching for the applicable price, the database defines an optimized index on the `prices` table:
+
+```sql
+CREATE INDEX idx_prices_optimized
+  ON prices (product_uuid, brand_uuid, start_date, end_date, priority DESC);
+```
+
+This index is used to efficiently filter prices by product, brand, and date range, and to select the highest priority price within the valid time window.
+
 ## API Endpoint
 
 | Method | Path        | Description                          |
@@ -92,10 +107,6 @@ Code coverage is measured using **JaCoCo**.
   📄 `target/site/jacoco/index.html`
 
 Minimum instruction coverage is enforced via `jacoco:check` with a threshold of **90%**.
-
-## Seed Data
-
-At startup, the database is initialized with 4 predefined price records for the product code `35455` and brand `ZARA`. These are defined in `data.sql` and `schema.sql`.
 
 ## Folder Structure
 ```

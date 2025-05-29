@@ -14,8 +14,8 @@ import java.util.UUID;
 public interface PriceEntityRepository extends JpaRepository<PriceEntity, Long> {
     @Query(value = """
             SELECT * FROM prices pr
-            WHERE pr.brand_uuid = :brandId
-              AND pr.product_uuid = :productId
+            WHERE pr.product_uuid = :productId
+              AND pr.brand_uuid = :brandId
               AND pr.start_date <= :applicationDate
               AND pr.end_date > :applicationDate
             ORDER BY pr.priority DESC
